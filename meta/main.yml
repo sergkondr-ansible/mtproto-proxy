@@ -1,0 +1,18 @@
+---
+
+galaxy_info:
+  author: Sergey Kondrashov
+  description: 
+  min_ansible_version: 2.4.2
+  github_branch: master
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+
+dependencies:
+  - src: git@github.com:sergkondr-ansible/docker.git
+    name: docker
+    path: roles
+    scm: git
+    version: master

@@ -1,0 +1,8 @@
+---
+
+mtproto_proxy_port: 443
+mtproto_secret_key: ''
+
+mtproto_send_parameters: yes
+mtproto_telegram_token: ''
+mtproto_telegram_chat_id: 0000000

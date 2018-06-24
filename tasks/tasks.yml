@@ -1,0 +1,37 @@
+---
+
+- block:
+  - name: Generate secret key
+    shell: "tr -dc 'a-f0-9' < /dev/urandom | dd bs=1 count=32 2>/dev/null"
+    register: secret_key
+  - name: Write secret key to variable  
+    set_fact: 
+      mtproto_secret_key: "{{ secret_key.stdout }}"
+  - debug:
+      msg: "{{ secret_key }}"
+      verbosity: 2
+  when: mtproto_secret_key == ''
+
+- name: Get official docker image for mtprto
+  docker:
+    name: mtproto-proxy
+    image: telegrammessenger/proxy
+    restart_policy: always
+    ports:
+    - "{{ mtproto_proxy_port }}:443"
+    env:
+      SECRET: "{{ mtproto_secret_key }}"
+      WORKERS: "{{ ansible_processor_count }}"
+    volumes:
+    - /data
+
+- name: Send the parameters of the new proxy to chat
+  telegram:
+    token: "{{ mtproto_telegram_token }}"
+    chat_id: "{{ mtproto_telegram_chat_id }}"
+    msg_format: 'html'
+    msg: "<b>Your new proxy is ready!</b>\n\
+Server: {{ ansible_default_ipv4.address }}:{{ mtproto_proxy_port }}\n\
+Use the following link to configure proxy:\n\
+tg://proxy?server={{ ansible_default_ipv4.address }}&port={{ mtproto_proxy_port }}&secret={{ mtproto_secret_key }}"
+  when: "{{ mtproto_send_parameters }}"
