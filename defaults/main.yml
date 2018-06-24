@@ -1,6 +1,6 @@
 ---
 
-mtproto_proxy_port: 443
+mtproto_proxy_port: 8000
 mtproto_secret_key: ''
 
 mtproto_send_parameters: yes

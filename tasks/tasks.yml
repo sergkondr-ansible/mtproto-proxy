@@ -4,15 +4,17 @@
   - name: Generate secret key
     shell: "tr -dc 'a-f0-9' < /dev/urandom | dd bs=1 count=32 2>/dev/null"
     register: secret_key
+
   - name: Write secret key to variable  
     set_fact: 
       mtproto_secret_key: "{{ secret_key.stdout }}"
+
   - debug:
       msg: "{{ secret_key }}"
       verbosity: 2
   when: mtproto_secret_key == ''
 
-- name: Get official docker image for mtprto
+- name: Get official docker image for mtprto-proxy
   docker:
     name: mtproto-proxy
     image: telegrammessenger/proxy

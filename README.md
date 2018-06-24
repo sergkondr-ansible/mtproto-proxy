@@ -3,7 +3,7 @@ mtproto-proxy
 
 The role runs official docker container of the mtproto-proxy and send necessary parameters to you.
 
-You can set secret key for proxy(`mtproto_secret_key`) manually, or the role will generate it automatically.
+You can set secret key for proxy(`mtproto_secret_key`) manually, or it will be generated automatically.
 
 Role Variables
 --------------
@@ -12,8 +12,8 @@ Role Variables
     mtproto_secret_key: ''
 
     mtproto_send_parameters: yes
-    mtproto_docker_token: '000000000:0123456qwerty'
-    mtproto_docker_chat_id: 0000000
+    mtproto_telegram_token: '000000000:0123456qwerty'
+    mtproto_telegram_chat_id: 0000000
 ```
 
 To get chat id, do the following:
