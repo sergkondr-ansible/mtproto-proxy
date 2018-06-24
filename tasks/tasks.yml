@@ -17,6 +17,8 @@
     name: mtproto-proxy
     image: telegrammessenger/proxy
     restart_policy: always
+    expose:
+    - 443
     ports:
     - "{{ mtproto_proxy_port }}:443"
     env:
