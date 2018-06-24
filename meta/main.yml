@@ -2,7 +2,7 @@
 
 galaxy_info:
   author: Sergey Kondrashov
-  description: 
+  description: The role sets up mtproto-proxy server(proxy for telegram)
   min_ansible_version: 2.4.2
   github_branch: master
   platforms:
