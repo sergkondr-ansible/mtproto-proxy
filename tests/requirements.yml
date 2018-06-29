@@ -1,5 +1,5 @@
 ---
 
-- src: git@github.com:sergkondr-ansible/docker.git
-  scm: git
+- src: sergkondr-ansible.docker
+  name: docker
   version: master
