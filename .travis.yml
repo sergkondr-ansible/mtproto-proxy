@@ -15,7 +15,7 @@ before_install:
   - sudo apt-get install -qq python-apt python-pycurl
 
 install:
-  - "if [ \"$ANSIBLE_VERSION\" = \"latest\" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi",
+  - "if [ \"$ANSIBLE_VERSION\" = \"latest\" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi"
 
 script:
   - echo -e "[defaults]\nroles_path    = ../" > ansible.cfg
