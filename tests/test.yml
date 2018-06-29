@@ -1,6 +1,7 @@
 ---
 
 - hosts: localhost
+  connection: local
   remote_user: root
   roles:
-    - mtproto-proxy
+    - ../mtproto-proxy
