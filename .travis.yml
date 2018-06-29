@@ -19,7 +19,7 @@ install:
 
 script:
   - echo -e "[defaults]\nroles_path    = ../" > ansible.cfg
-  - ansible-galaxy install -r requirements.yml --force
+  - ansible-galaxy install -r tests/requirements.yml --force
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   - ansible-playbook -i tests/inventory tests/test.yml --connection=local --become -vvvv
   - >
