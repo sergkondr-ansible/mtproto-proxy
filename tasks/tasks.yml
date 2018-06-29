@@ -29,7 +29,7 @@
     volumes:
     - /data
 
-- name: Send the parameters of the new proxy to chat
+- name: Send parameters of the new proxy to chat
   telegram:
     token: "{{ mtproto_telegram_token }}"
     chat_id: "{{ mtproto_telegram_chat_id }}"
