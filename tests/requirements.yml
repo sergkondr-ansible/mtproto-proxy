@@ -1,0 +1,5 @@
+---
+
+- src: git@github.com:sergkondr-ansible/docker.git
+  scm: git
+  version: master

@@ -15,14 +15,15 @@ before_install:
   - sudo apt-get install -qq python-apt python-pycurl
 
 install:
-  - "if [ \"$ANSIBLE_VERSION\" = \"latest\" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi"
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
 
 script:
   - echo -e "[defaults]\nroles_path    = ../" > ansible.cfg
+  - ansible-galaxy install -r requirements.yml --force
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vvvv
+  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --become -vvvv
   - >
-    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+    ansible-playbook -i tests/inventory tests/test.yml --connection=local --become
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
