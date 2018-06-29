@@ -1,5 +1,7 @@
 mtproto-proxy
 =========
+[![Build Status](https://travis-ci.com/sergkondr-ansible/mtproto-proxy.svg?branch=master)](https://travis-ci.com/sergkondr-ansible/mtproto-proxy)
+[![Ansible Role](https://img.shields.io/ansible/role/d/26551.svg)](https://galaxy.ansible.com/sergkondr-ansible/mtproto-proxy/)
 
 The role runs official docker container of the mtproto-proxy and send necessary parameters to you.
 
