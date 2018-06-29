@@ -1,5 +1,0 @@
----
-
-- src: sergkondr-ansible.docker
-  name: docker
-  version: master

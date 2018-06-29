@@ -4,5 +4,4 @@
   connection: local
   remote_user: root
   roles:
-    - docker
-    - mtproto-proxy
+    - ../mtproto-proxy

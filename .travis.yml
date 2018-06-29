@@ -1,27 +1,27 @@
 ---
 
 language: python
-python: "2.7"
-
+cache: pip
+python: "3.6"
 env:
-  - distro: ubuntu1604
-  - ANSIBLE_VERSION: latest
-  - ANSIBLE_VERSION: 2.4.2.0
-
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq python-minimal python-simplejson python-pip python-apt python-pycurl 
-
+  - ANSIBLE_VERSION=2.4.0.0
+  - ANSIBLE_VERSION=2.4.1.0
+  - ANSIBLE_VERSION=2.4.2.0
+  - ANSIBLE_VERSION=2.4.3.0
+  - ANSIBLE_VERSION=2.4.4.0
+  - ANSIBLE_VERSION=2.5.0
+  - ANSIBLE_VERSION=2.5.1
+  - ANSIBLE_VERSION=2.5.2
+  - ANSIBLE_VERSION=2.5.3
+  - ANSIBLE_VERSION=2.5.4
+  - ANSIBLE_VERSION=2.5.5
+  - ANSIBLE_VERSION=latest
 install:
-  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
-
+  - if [ "${ANSIBLE_VERSION}" = "latest" ]; then pip3 install -U ansible ansible-lint; else pip3 install -U ansible==${ANSIBLE_VERSION} ansible-lint; fi
 script:
-  - echo -e "[defaults]\nroles_path    = ../" > ansible.cfg
-  - ansible-galaxy install -r tests/requirements.yml --force
-  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --become -vvvv
-  - >
-    ansible-playbook -i tests/inventory tests/test.yml --connection=local --become
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
+  - ansible-lint --version
+  - ansible-lint -v .
+  - ansible --version
+  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
