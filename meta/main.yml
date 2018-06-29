@@ -9,10 +9,3 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - xenial
-
-dependencies:
-  - src: git@github.com:sergkondr-ansible/docker.git
-    name: docker
-    path: roles
-    scm: git
-    version: master
