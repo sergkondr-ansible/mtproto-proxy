@@ -7,6 +7,11 @@ The role runs official docker container of the mtproto-proxy and send necessary 
 
 You can set secret key for proxy(`mtproto_secret_key`) manually, or it will be generated automatically.
 
+Install role from galaxy:
+```
+$ ansible-galaxy install sergkondr_ansible.mtproto-proxy
+```
+
 Requirements
 ------------
 The role requires Docker 17.03 or higher installed.
@@ -42,6 +47,7 @@ Install mtproto-proxy, generate secret-key and send it to specified chat via bot
              mtproto_telegram_chat_id: 1234567 
            }
 ```
+
 Install mtproto-proxy with specified secret-key:
 ```
     - hosts: mtproto-proxy
@@ -57,4 +63,4 @@ WTFPL
 Author Information
 ------------------
 
-[Sergey Kondrashov](https://github.com/sergkondr)
+:octocat:[Sergey Kondrashov](https://github.com/sergkondr)
