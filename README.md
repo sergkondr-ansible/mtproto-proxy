@@ -58,7 +58,7 @@ Install mtproto-proxy with specified secret-key:
 License
 -------
 
-[WTFPL](https://github.com/sergkondr/stuff/blob/master/wtfpl-2018.txt)
+[WTFPL](https://raw.githubusercontent.com/sergkondr/stuff/master/wtfpl-2018.txt)
 
 Author Information
 ------------------
