@@ -14,5 +14,14 @@ script:
   - ansible-lint -v .
   - ansible --version
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+  - ansible-playbook tests/test.yml -i tests/inventory
+  - ansible-playbook tests/test.yml -i tests/inventory -C | tee second_execution.out
+  - grep 'ok.*changed.*unreachable.*failed' second_execution.out > second_execution_results.out
+  - >
+      if grep -vq 'changed=0.*failed=0' second_execution_results.out; then
+        (echo 'Idempotence test: fail' && grep -v 'changed=0.*failed=0' site.playrecap && exit 1)
+      else
+        (echo 'Idempotence test: pass' && exit 0)
+      fi
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
