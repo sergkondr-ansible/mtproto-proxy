@@ -19,7 +19,7 @@ script:
   - grep 'ok.*changed.*unreachable.*failed' second_execution.out > second_execution_results.out
   - >
       if grep -vq 'changed=0.*failed=0' second_execution_results.out; then
-        (echo 'Idempotence test: fail' && grep -v 'changed=0.*failed=0' site.playrecap && exit 1)
+        (echo 'Idempotence test: fail' && grep -v 'changed=0.*failed=0' second_execution_results && exit 1)
       else
         (echo 'Idempotence test: pass' && exit 0)
       fi
