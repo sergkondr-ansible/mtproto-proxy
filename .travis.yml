@@ -8,7 +8,7 @@ env:
   - ANSIBLE_VERSION=2.5.5
   - ANSIBLE_VERSION=latest
 install:
-  - if [ "${ANSIBLE_VERSION}" = "latest" ]; then pip3 install -U ansible ansible-lint; else pip3 install -U ansible==${ANSIBLE_VERSION} ansible-lint; fi
+  - if [ "${ANSIBLE_VERSION}" = "latest" ]; then pip3 install -U ansible ansible-lint docker; else pip3 install -U ansible==${ANSIBLE_VERSION} ansible-lint docker; fi
 script:
   - ansible-lint --version
   - ansible-lint -v .
@@ -19,7 +19,7 @@ script:
   - grep 'ok.*changed.*unreachable.*failed' second_execution.out > second_execution_results.out
   - >
       if grep -vq 'changed=0.*failed=0' second_execution_results.out; then
-        (echo 'Idempotence test: fail' && grep -v 'changed=0.*failed=0' second_execution_results && exit 1)
+        (echo 'Idempotence test: fail' && grep -v 'changed=0.*failed=0' second_execution_results.out && exit 1)
       else
         (echo 'Idempotence test: pass' && exit 0)
       fi
